@@ -114,8 +114,16 @@ switch (ENVIRONMENT)
  *
  * NO TRAILING SLASH!
  */
-	$application_folder = 'application';
-
+	$defaultType = 'admin';
+	$defaultVersion = '0.1';
+	$appType = (isset($_REQUEST['appType'])) ? $_REQUEST['appType'] : $defaultType;
+	$appVersion = (isset($_REQUEST['appVersion'])) ? $_REQUEST['appVersion'] : $defaultVersion;
+	//
+	$application_folder = 'application'.'/'.$appType.'/'.$appVersion;
+	//
+	if (!is_dir($application_folder)) exit(json_encode(['status'=>404,'content'=>['detail'=>'not found']]));
+	
+	
 /*
  *---------------------------------------------------------------
  * VIEW DIRECTORY NAME
