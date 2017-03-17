@@ -1,2 +1,0 @@
-# hotoji
-hotoji-dev
